@@ -46,3 +46,16 @@ class UnionFind
     puts @parent_or_size.join(' ')
   end
 end
+
+n, m = gets.chomp.split(' ').map(&:to_i)
+uf   = UnionFind.new(n)
+m.times do
+  a, b = gets.chomp.split(' ').map { |x| x.to_i - 1 }
+  uf.unit(a, b)
+end
+
+ans = n
+uf.group.each do |v|
+  ans -= v.length - 1
+end
+puts ans
