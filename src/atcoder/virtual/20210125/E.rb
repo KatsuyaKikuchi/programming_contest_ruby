@@ -47,3 +47,17 @@ class UnionFind
     puts @parent_or_size.join(' ')
   end
 end
+
+n, m = gets.chomp.split(' ').map(&:to_i)
+p    = gets.chomp.split(' ').map { |v| v.to_i - 1 }
+uf   = UnionFind.new(n)
+m.times do
+  a, b = gets.chomp.split(' ').map { |v| v.to_i - 1 }
+  uf.unit(a, b)
+end
+
+ans = 0
+(0...n).each do |i|
+  ans += 1 if uf.same?(i, p[i])
+end
+puts ans
